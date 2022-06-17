@@ -1,4 +1,4 @@
-language: generic
+#language: generic
 sudo: required
 services:
   - docker
@@ -8,5 +8,23 @@ before_install:
 
 script:
   - docker run -e CI=true satya/docker-react npm run test
+
+
+ deploy: 
+    provider: elasticbeanstalk
+    region: "us-east-1"  # us-west-2 was created by the teacher. Place you get in the AWS url where you created the aws elasticbeanstalk
+    app: "docker-react"
+    env: "Docker-env" # what ever is listed on the AWS dashboard when you created
+    bucket_name: "elasticbeanstalk-us-west-2-306476627547"  # what ever is listed on the AWS services  check 97 lesson
+    bucket_path: "docker-react"
+    on:
+      branch: master
+    access_key_id:  $AWS_ACCESS_KEY # he created this on Travis both the keys
+    secret_access_key:  "$AWS_SECRET_KEY"
+
+
+
+
+
 #satya/docker-react is the image id
 # -e CI=true is command exits when the test is done.  otherwise it just hangs. u can run this in cmd prompt
