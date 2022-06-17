@@ -9,4 +9,4 @@ before_install:
 script:
   - docker run -e CI=true satya/docker-react npm run test
 #satya/docker-react is the image id
-# -e CI=true is command exits when the test is done. otherwise it just hangs. u can run this in cmd prompt
+# -e CI=true is command exits when the test is done.  otherwise it just hangs. u can run this in cmd prompt
